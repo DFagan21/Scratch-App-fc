@@ -54,7 +54,12 @@ function App() {
         <Navbar collapseOnSelect bg="light" expand="md" className="mb-3">
           <LinkContainer to="/">
             <Navbar.Brand className="font-weight-bold text-muted">
-              Scratch
+              <img
+                src="https://oemfastcam.s3-ap-southeast-2.amazonaws.com/logo-dark.png"
+                width="200"
+                alt="FastCAM Logo"
+              />
+              FastCAM Reseller Portal
             </Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle />

@@ -43,7 +43,7 @@ ReactDOM.render(
         crossOrigin="anonymous"
       />
     </div>
-    <title>Scratch - A simple note taking app</title>
+    <title>FastCAM - Reseller Portal</title>
     <Router>
       <App />
     </Router>

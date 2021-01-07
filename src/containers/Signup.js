@@ -118,11 +118,35 @@ export default function Signup() {
     return (
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="email" size="lg">
-          <Form.Label>Email</Form.Label>
+          <Form.Label>Email (this will be your login)</Form.Label>
           <Form.Control
             autoFocus
             type="email"
             value={fields.email}
+            onChange={handleFieldChange}
+          />
+        </Form.Group>
+        <Form.Group size="lg" controlId="company">
+          <Form.Label>Company</Form.Label>
+          <Form.Control
+            type="text"
+            value={fields.company}
+            onChange={handleFieldChange}
+          />
+        </Form.Group>
+        <Form.Group size="lg" controlId="companyaddress">
+          <Form.Label>Company Address</Form.Label>
+          <Form.Control
+            type="text"
+            value={fields.companyaddress}
+            onChange={handleFieldChange}
+          />
+        </Form.Group>
+        <Form.Group size="lg" controlId="controllers">
+          <Form.Label>Controllers for machines sold with FastCAM:</Form.Label>
+          <Form.Control
+            type="text"
+            value={fields.controllers}
             onChange={handleFieldChange}
           />
         </Form.Group>
