@@ -30,7 +30,7 @@ Amplify.configure({
 });
 ReactDOM.render(
   <React.StrictMode>
-    <head>
+    <div>
       <link
         rel="stylesheet"
         type="text/css"
@@ -40,9 +40,9 @@ ReactDOM.render(
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
-        crossorigin="anonymous"
+        crossOrigin="anonymous"
       />
-    </head>
+    </div>
     <title>Scratch - A simple note taking app</title>
     <Router>
       <App />
