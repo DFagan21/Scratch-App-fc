@@ -13,7 +13,11 @@ export default function Signup() {
     email: "",
     password: "",
     confirmPassword: "",
-    confirmationCode: ""
+    confirmationCode: "",
+    controllers: "",
+    companyname: "",
+    companyaddress: "",
+    name: ""
   });
   const history = useHistory();
   const [newUser, setNewUser] = useState(null);
@@ -40,7 +44,13 @@ export default function Signup() {
     try {
       const newUser = await Auth.signUp({
         username: fields.email,
-        password: fields.password
+        password: fields.password,
+        attributes: {
+          name: fields.name,
+          address: fields.companyaddress,
+          "custom:custom:Controllers": fields.controllers,
+          "custom:custom:CompanyName": fields.company
+        }
       });
       setIsLoading(false);
       setNewUser(newUser);
@@ -123,6 +133,14 @@ export default function Signup() {
             autoFocus
             type="email"
             value={fields.email}
+            onChange={handleFieldChange}
+          />
+        </Form.Group>
+        <Form.Group size="lg" controlId="name">
+          <Form.Label>Name</Form.Label>
+          <Form.Control
+            type="text"
+            value={fields.name}
             onChange={handleFieldChange}
           />
         </Form.Group>
