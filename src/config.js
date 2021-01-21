@@ -9,8 +9,8 @@ const config = {
   },
   cognito: {
     REGION: "ap-southeast-2",
-    USER_POOL_ID: "ap-southeast-2_D6vq3xELy",
-    APP_CLIENT_ID: "2l06nf7149g28tq4ri796ouoon",
+    USER_POOL_ID: "ap-southeast-2_xi8KBEoRx",
+    APP_CLIENT_ID: "6imvs4j41b2i411f94d3tmmhtq",
     IDENTITY_POOL_ID: "ap-southeast-2:900cb3ec-909b-4a8a-8310-e7f4325248ea"
   },
   MAX_ATTACHMENT_SIZE: 5000000

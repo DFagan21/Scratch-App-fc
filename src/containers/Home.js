@@ -180,7 +180,11 @@ export default function Home() {
 
   return (
     <div className="Home">
-      <Tabs defaultActiveKey="home" transition={false} id="noanim-tab-example">
+      <Tabs
+        defaultActiveKey="Submissions"
+        transition={false}
+        id="noanim-tab-example"
+      >
         <Tab eventKey="Submissions" title="Submissions">
           {isAuthenticated ? renderSubmissions() : renderLander()}
         </Tab>
