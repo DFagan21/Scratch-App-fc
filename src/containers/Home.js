@@ -13,6 +13,7 @@ export default function Home() {
   const [users, setUsers] = useState([]);
   const { isAuthenticated } = useAppContext();
   const [isLoading, setIsLoading] = useState(true);
+  const [sortConfig, setSortConfig] = useState([]);
 
   useEffect(() => {
     async function onLoad() {
@@ -37,7 +38,70 @@ export default function Home() {
     return API.get("users", "/users");
   }
 
+  const requestSort = (key) => {
+    let direction = "ascending";
+    if (sortConfig.key === key && sortConfig.direction === "ascending") {
+      direction = "descending";
+    }
+    setSortConfig({ key, direction });
+  };
+  function renderSubmissionListTable(users) {
+    const submissions = users;
+    sortConfig.key = "createdAt";
+    sortConfig.direction = "descending";
+
+    let sortedSubmissions = [...submissions];
+    sortedSubmissions.sort((a, b) => {
+      if (a[sortConfig.key] < b[sortConfig.key]) {
+        return sortConfig.direction === "ascending" ? -1 : 1;
+      }
+      if (a[sortConfig.key] > b[sortConfig.key]) {
+        return sortConfig.direction === "ascending" ? 1 : -1;
+      }
+      return 0;
+    });
+    return (
+      <>
+        <table className="styled-table" onload={() => requestSort("createdAt")}>
+          <caption>Your Submissions</caption>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Name</th>
+              <th>Company</th>
+              <th>Fastcam 8 ID</th>
+              <th>Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            {sortedSubmissions.map((submission) => (
+              <tr className="active-row" key={submission.submissionid}>
+                <td>{new Date(submission.createdAt).toLocaleDateString()}</td>
+                <td>{submission.firstname}</td>
+                <td>{submission.companyname}</td>
+                <td>{submission.fastcam8id}</td>
+                <td>{submission.email}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </>
+    );
+  }
+
   function renderSubmissionList(users) {
+    const submissions = users;
+
+    let sortedSubmissions = [...submissions];
+    sortedSubmissions.sort((a, b) => {
+      if (a[sortConfig.key] < b[sortConfig.key]) {
+        return sortConfig.direction === "ascending" ? -1 : 1;
+      }
+      if (a[sortConfig.key] > b[sortConfig.key]) {
+        return sortConfig.direction === "ascending" ? 1 : -1;
+      }
+      return 0;
+    });
     return (
       <>
         <LinkContainer to="/users/new">
@@ -46,19 +110,7 @@ export default function Home() {
             <span className="ml-2 font-weight-bold">Upload a new user</span>
           </ListGroup.Item>
         </LinkContainer>
-        {users.map(({ submissionid, createdAt, firstname, lastname }) => (
-          <LinkContainer key={submissionid} to={`/users/${submissionid}`}>
-            <ListGroup.Item action>
-              <span className="font-weight-bold">
-                {firstname} {lastname}
-              </span>
-              <br />
-              <span className="text-muted">
-                Created: {new Date(createdAt).toLocaleString()}
-              </span>
-            </ListGroup.Item>
-          </LinkContainer>
-        ))}
+        <div>{renderSubmissionListTable(users)}</div>
       </>
     );
   }
@@ -191,7 +243,7 @@ export default function Home() {
         <Tab eventKey="Information" title="Information">
           {infoTab()}
         </Tab>
-        <Tab eventKey="" title="Oem Links">
+        <Tab eventKey="" title="Reseller Links">
           {isAuthenticated ? customerlinks() : filler()}
         </Tab>
       </Tabs>

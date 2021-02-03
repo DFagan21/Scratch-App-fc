@@ -54,12 +54,14 @@ function App() {
         <Navbar collapseOnSelect bg="light" expand="md" className="mb-3">
           <LinkContainer to="/">
             <Navbar.Brand className="font-weight-bold text-muted">
-              <img
-                src="https://oemfastcam.s3-ap-southeast-2.amazonaws.com/logo-dark.png"
-                width="200"
-                alt="FastCAM Logo"
-              />
-              FastCAM Reseller Portal
+              <span>
+                <img
+                  src="https://oemfastcam.s3-ap-southeast-2.amazonaws.com/logo-dark.png"
+                  width="200"
+                  alt="FastCAM Logo"
+                />
+              </span>
+              <div>FastCAM Reseller Portal</div>
             </Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle />
@@ -69,9 +71,6 @@ function App() {
                 <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
               ) : (
                 <>
-                  <LinkContainer to="/signup">
-                    <Nav.Link>Signup</Nav.Link>
-                  </LinkContainer>
                   <LinkContainer to="/login">
                     <Nav.Link>Login</Nav.Link>
                   </LinkContainer>

@@ -11,6 +11,12 @@ body {
   font-family: "Open Sans", sans-serif;
 }
 
+.Navbar.Toggle {
+  width: 100%;
+  float: none;
+  margin-right: 0;
+}
+
 h1,
 h2,
 h3,
