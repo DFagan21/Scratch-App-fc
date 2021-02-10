@@ -12,10 +12,16 @@ export default function NewNote() {
   const file = useRef(null);
   const history = useHistory();
   const [content, setContent] = useState("");
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [companyname, setCompanyname] = useState("");
+  const [address, setAddress] = useState("");
+  const [email, setEmail] = useState("");
+  const [fastcam8id, setfastcam8id] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   function validateForm() {
-    return content.length > 0;
+    return email.length > 0;
   }
 
   function handleFileChange(event) {
@@ -39,7 +45,7 @@ export default function NewNote() {
     try {
       const attachment = file.current ? await s3Upload(file.current) : null;
 
-      await createNote({ content, attachment });
+      await createNote({ companyname, firstname, lastname, fastcam8id, address, email });
       history.push("/");
     } catch (e) {
       onError(e);
@@ -48,7 +54,7 @@ export default function NewNote() {
   }
 
   function createNote(note) {
-    return API.post("notes", "/notes", {
+    return API.post("users", "/users", {
       body: note
     });
   }
@@ -56,16 +62,34 @@ export default function NewNote() {
   return (
     <div className="NewNote">
       <Form onSubmit={handleSubmit}>
-        <Form.Group controlId="content">
+
+      <Form.Group controlId="firstName">
+          <Form.Label>First Name</Form.Label>
           <Form.Control
-            value={content}
-            as="textarea"
-            onChange={(e) => setContent(e.target.value)}
+          value={firstname}
+          type="text"
+          onChange={(e) => setFirstname(e.target.value)}
           />
         </Form.Group>
-        <Form.Group controlId="file">
-          <Form.Label>Attachment</Form.Label>
-          <Form.Control onChange={handleFileChange} type="file" />
+        <Form.Group controlId="lastName">
+          <Form.Label>Last Name</Form.Label>
+          <Form.Control type="text" value={lastname} onChange={(e) => setLastname(e.target.value)}/>
+        </Form.Group>
+        <Form.Group controlId="company">
+          <Form.Label>Company</Form.Label>
+          <Form.Control type="text" value={companyname} onChange={(e) => setCompanyname(e.target.value)}/>
+        </Form.Group>
+        <Form.Group controlId="address">
+          <Form.Label>Address</Form.Label>
+          <Form.Control type="text" value={address} onChange={(e) => setAddress(e.target.value)}/>
+        </Form.Group>
+        <Form.Group controlId="fastcamID">
+          <Form.Label>FastCAM ID</Form.Label>
+          <Form.Control type="text" value={fastcam8id} onChange={(e) => setfastcam8id(e.target.value)}/>
+        </Form.Group>
+        <Form.Group controlId="formBasicEmail">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control type="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
         </Form.Group>
         <LoaderButton
           block

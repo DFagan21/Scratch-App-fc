@@ -5,13 +5,13 @@ const config = {
   },
   apiGateway: {
     REGION: "ap-southeast-2",
-    URL: "https://jbk6k3vcad.execute-api.ap-southeast-2.amazonaws.com/dev"
+    URL: "https://5nzpjs7rpg.execute-api.ap-southeast-2.amazonaws.com/dev"
   },
   cognito: {
     REGION: "ap-southeast-2",
-    USER_POOL_ID: "ap-southeast-2_d3ATAJIQA",
-    APP_CLIENT_ID: "6nqan0b1s9ctm1ohnf36l0ki1s",
-    IDENTITY_POOL_ID: "ap-southeast-2:0565a377-77e8-4d7b-a184-8a6539c20104"
+    USER_POOL_ID: "ap-southeast-2_xi8KBEoRx",
+    APP_CLIENT_ID: "2anh4csg8e1uu3fgsql9jb60v3",
+    IDENTITY_POOL_ID: "ap-southeast-2:900cb3ec-909b-4a8a-8310-e7f4325248ea"
   },
   MAX_ATTACHMENT_SIZE: 5000000
 };

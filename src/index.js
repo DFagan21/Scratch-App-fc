@@ -5,6 +5,7 @@ import App from "./App";
 import { Amplify } from "aws-amplify";
 import config from "./config";
 const rootElement = document.getElementById("root");
+
 Amplify.configure({
   Auth: {
     mandatorySignIn: true,
@@ -21,7 +22,7 @@ Amplify.configure({
   API: {
     endpoints: [
       {
-        name: "notes",
+        name: "users",
         endpoint: config.apiGateway.URL,
         region: config.apiGateway.REGION
       }
@@ -43,7 +44,7 @@ ReactDOM.render(
         crossOrigin="anonymous"
       />
     </div>
-    <title>Scratch - A simple note taking app</title>
+    <title>FastCAM - Reseller Portal</title>
     <Router>
       <App />
     </Router>
